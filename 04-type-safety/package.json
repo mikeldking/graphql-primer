@@ -1,0 +1,27 @@
+{
+  "name": "04-type-safety",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "watch": "concurrently 'npm run watch:ts' 'npm run gql:codegen:watch'",
+    "watch:ts": "tsc --watch",
+    "gql:download-schema": "apollo schema:download graphql-schema.json",
+    "gql:codegen": "apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/gqlTypes.ts types",
+    "gql:codegen:watch": "apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/gqlTypes.ts --watch types"
+  },
+  "author": "mikyo@engineml.com",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "apollo-cli": "^0.4.0",
+    "concurrently": "^5.1.0",
+    "graphql": "^14.6.0",
+    "graphql-request": "^1.8.2",
+    "graphql-tag": "^2.10.3",
+    "typescript": "^3.7.5"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.1"
+  }
+}
